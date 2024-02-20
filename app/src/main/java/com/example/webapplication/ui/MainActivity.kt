@@ -50,7 +50,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initializeWebView()
         // Load your web page with HTML content including buttons for requesting permissions
-        binding.webView.loadDataWithBaseURL(null, getHtmlContent(), "text/html", "utf-8", null)
+       //    binding.webView.loadDataWithBaseURL(null, getHtmlContent(), "text/html", "utf-8", null)
+        binding.webView.loadUrl("www.google.com")
     }
 
     private fun initializeWebView() {
