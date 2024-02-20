@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         initializeWebView()
         // Load your web page with HTML content including buttons for requesting permissions
        //    binding.webView.loadDataWithBaseURL(null, getHtmlContent(), "text/html", "utf-8", null)
-        binding.webView.loadUrl("www.google.com")
+        binding.webView.loadUrl("https://www98.verizon.com/fieldops-sit/omegaapp")
     }
 
     private fun initializeWebView() {
