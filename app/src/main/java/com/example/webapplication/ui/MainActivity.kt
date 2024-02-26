@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
             handleCameraPermissionResult(isCameraGranted)
         }
 
+    private val requestBarcodePermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isCameraGranted ->
+            handleBarcodePermissionResult(isCameraGranted)
+        }
+
     private val requestLocationPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isLocationGranted ->
             handleLocationPermissionResult(isLocationGranted)
@@ -50,8 +55,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initializeWebView()
         // Load your web page with HTML content including buttons for requesting permissions
-       //    binding.webView.loadDataWithBaseURL(null, getHtmlContent(), "text/html", "utf-8", null)
-        binding.webView.loadUrl("https://www98.verizon.com/fieldops-sit/omegaapp")
+           binding.webView.loadDataWithBaseURL(null, getHtmlContent(), "text/html", "utf-8", null)
+      //  binding.webView.loadUrl("https://www98.verizon.com/fieldops-sit/omegaapp")
     }
 
     private fun initializeWebView() {
@@ -69,6 +74,19 @@ class MainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun handleBarcodePermissionResult(isCameraGranted: Boolean) {
+        if (isCameraGranted) {
+            Toast.makeText(this, "Camera permission granted", Toast.LENGTH_SHORT).show()
+            openBarcode()
+        } else {
+            Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun openBarcode() {
+        startActivity(Intent(this, BarcodeScannerActivity::class.java))
     }
 
     private fun handleLocationPermissionResult(isLocationGranted: Boolean) {
@@ -162,6 +180,11 @@ class MainActivity : AppCompatActivity() {
                 // Load the image data into the WebView
                 binding.webView.loadUrl("javascript:displayImage('$imageData')")
             }
+        }
+
+        @JavascriptInterface
+        fun requestBarcodePermission() {
+            requestBarcodePermissionLauncher.launch(CAMERA_PERMISSION)
         }
     }
 }
