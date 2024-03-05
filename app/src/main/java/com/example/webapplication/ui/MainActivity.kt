@@ -18,6 +18,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.webapplication.databinding.ActivityMainBinding
+import com.example.webapplication.util.AndroidDownloader
 import com.example.webapplication.util.Constants.CAMERA_PERMISSION
 import com.example.webapplication.util.Constants.LOCATION_PERMISSION
 import com.example.webapplication.util.Util
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var webAppInterface: WebAppInterface
+    private lateinit var downloader: AndroidDownloader
 
     private val requestCameraPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isCameraGranted ->
@@ -57,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         // Load your web page with HTML content including buttons for requesting permissions
            binding.webView.loadDataWithBaseURL(null, getHtmlContent(), "text/html", "utf-8", null)
       //  binding.webView.loadUrl("https://www98.verizon.com/fieldops-sit/omegaapp")
+        downloader = AndroidDownloader(this)
     }
 
     private fun initializeWebView() {
@@ -185,6 +188,11 @@ class MainActivity : AppCompatActivity() {
         @JavascriptInterface
         fun requestBarcodePermission() {
             requestBarcodePermissionLauncher.launch(CAMERA_PERMISSION)
+        }
+
+        @JavascriptInterface
+        fun downloadFile() {
+            downloader.downloadFile("https://pl-coding.com/wp-content/uploads/2022/04/pic-squared.jpg")
         }
     }
 }
