@@ -23,7 +23,7 @@ class AndroidDownloader(
 
     override fun downloadImageFile(url: String): Long {
         val request = DownloadManager.Request(url.toUri())
-            .setMimeType("image/jpeg")
+            .setMimeType("image/*")
             .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI)
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .setTitle("image.jpg")

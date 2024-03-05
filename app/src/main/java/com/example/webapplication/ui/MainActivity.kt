@@ -192,7 +192,10 @@ class MainActivity : AppCompatActivity() {
 
         @JavascriptInterface
         fun downloadFile() {
-            downloader.downloadImageFile("https://pl-coding.com/wp-content/uploads/2022/04/pic-squared.jpg")
+            downloader.downloadImageFile("https://drive.google.com/file/d/1neOXwlY7kKqcP5l8Dw4sWjqxtb1gHdz3/view?usp=sharing")
+            downloader.downloadPdfFile("https://drive.google.com/file/d/1oMxtapF4RIFh7KVFRud3crmwXvMAMfes/view?usp=sharing")
+            downloader.downloadDocFile("https://docs.google.com/document/d/12pW6NY4h9M0BLmsRjXe8NYlMk4LFnNrh/edit?usp=sharing&ouid=101116084773656515411&rtpof=true&sd=true")
+            downloader.downloadApkFile("https://drive.google.com/file/d/1klYUGMgqc9oXV36MNJThV73fiFgbw6Iu/view?usp=sharing")
         }
     }
 }
