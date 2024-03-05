@@ -192,7 +192,7 @@ class MainActivity : AppCompatActivity() {
 
         @JavascriptInterface
         fun downloadFile() {
-            downloader.downloadFile("https://pl-coding.com/wp-content/uploads/2022/04/pic-squared.jpg")
+            downloader.downloadImageFile("https://pl-coding.com/wp-content/uploads/2022/04/pic-squared.jpg")
         }
     }
 }
